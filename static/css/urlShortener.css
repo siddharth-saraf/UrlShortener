@@ -1,0 +1,162 @@
+/* Body */
+
+body{
+	background-color: #C2D3D2;
+}
+
+/* Header */
+
+.pageTitle{
+	width: 100%;
+	text-align: center;
+}
+
+.pageTitle a{
+	color: #373C51;
+	font-size: 50px;
+}
+
+.pageHeader{
+	background-color: #F2E9E4;
+	width: 100%;
+	padding: 10px;
+	margin-top: 25px;
+	border-top: 5px solid #373C51;
+	border-bottom: 5px solid #373C51;
+	margin-bottom: 20px;
+}
+
+.top{
+	color: #373C51;
+	position: relative;
+	font-size: 25px;
+}
+
+.dropdownItem{
+	font-size: 20px;
+	color: #F2E9E4;
+	border-bottom: 1px solid #F2E9E4;
+}
+
+.dropdownItem:last-child{
+	border: none;
+}
+
+.dropdownItem:hover{
+	color: #F2E9E4;
+	background-color: rgb(43, 48, 51);
+}
+
+.dropdown-menu{
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: #212629;
+	border: none;
+	text-align: center;
+}
+
+.dropdown-toggle:hover, .dropdown-toggle:focus{
+	text-decoration: none;
+	color: #212629;
+}
+
+.topLink{
+	float: right;
+	bottom: 65px;
+	right: 25px;
+}
+
+.topLeft{
+	float: left;
+	bottom: 535px;
+	left: 25px;
+}
+
+.newUrl span{
+	font-size: 25px;
+}
+
+.newUrl{
+	bottom: 57px;
+}
+
+/* Url List */
+
+.url {
+	max-width: 100%;
+	background-color: #F2E9E4;
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+.url div{
+	border-right: 2px solid #373C51;
+	height: 50px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	word-wrap: break-word;
+	padding: auto;
+	padding-bottom: 5px;
+}
+
+.listUrl{
+	height: 100px;
+}
+
+.url div:last-child{
+	border: none;
+}
+
+.url h3{
+	margin-top: 10px;
+}
+
+.url, .url a{
+	color : #373C51;
+	font-size: 18px;
+}
+
+.urlList{
+	border: 5px solid #373C51;
+	padding: 0px;
+}
+
+.tableHeader h3{
+	font-weight: bold;
+	font-size: 23px;
+}
+
+.tableHeader div:last-child h3{
+	font-size: 17px;
+	vertical-align: center;
+}
+
+.tableHeader{
+	border-bottom: 1px solid #373C51;
+}
+
+.edit:hover i, .delete:hover i{
+	color: lightgrey;
+}
+
+/* Forms */
+
+.formLinkTo, .formKey{
+	width: 500px;
+}
+
+.save{
+	background-color: #F2E9E4;
+	color: #373C51;
+	border: 1px solid #373C51;
+}
+
+label{
+	width: 100px;
+	text-align: center;
+}
+
+.forgotLink, .forgotLink:hover{
+	color: #373C51;
+}
+

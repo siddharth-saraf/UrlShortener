@@ -1,0 +1,64 @@
+{% load static %}
+
+<html>
+	<head>
+		<title>
+            URL Shortener | 
+            {% block title %}
+            {% endblock %}
+        </title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/urlShortener.css' %}">
+        <script src="https://kit.fontawesome.com/ee4be24a54.js"></script>
+	</head>
+	<body>
+        {% if messages %}
+            <div class="row align-items-center">
+            {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+            </div>
+        {% endif %}
+		<div class="pageHeader">
+			<h1 class="pageTitle"><a href="/">URL Shortener</a></h1>
+			{% if not user.is_authenticated %}
+                <div class="loginSignup">
+                    <a href="{% url 'signup' %}" class="topLink top">/Sign Up</a>
+                    <a href="{% url 'login' %}" class="topLink top">Login</a>
+                </div>
+            {% elif request.build_absolute_uri == 'http://127.0.0.1:8000/myUrls/' %}
+                <a href="{% url 'new_url' %}" class="topLeft top newUrl">
+                    <span class="addUrl">Add Url</span>
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            {% endif %}
+            {% if user.is_authenticated %}
+                <div class="dropdown">
+                    <button class="topLink top btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">  
+                        <a href="{% url 'edit_account' %}" class="top dropdownItem dropdown-item">Edit Account</a>
+                        <a href="{% url 'url_list' %}" class="top dropdownItem dropdown-item">My URLs</a>
+                        <a href="{% url 'logout' %}" class="top dropdownItem dropdown-item">Logout</a>
+                    </div>
+                </div>
+            {% endif %}
+		</div>
+        <div class="content container">
+            <div class="row">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>

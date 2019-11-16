@@ -1,0 +1,47 @@
+{% extends 'urlShortener/base.html' %}
+
+{% block title %}
+	My Urls
+{% endblock %}
+
+{% block content %}
+	<div class="urlList container">
+		<div class="row url tableHeader">
+			<div class="col-sm-4 linkFrom">
+				<h3>Shortened URL</h3>
+			</div>
+			<div class="col-sm-5 linkTo">
+				<h3>Original URL</h3>
+			</div>
+			<div class="col-md-2 dateCreated">
+				<h3>Date Created</h3>
+			</div>
+			<div class="col-md-1 edit">
+				<h3>Edit Del</h3>
+			</div>
+		</div>
+		{% for x in urls %}
+			<div class="url listUrl row">
+				<div class="col-sm-4 linkFrom">
+					<h3><a href="{% url 'redirect' key=x.key %}">{{ request.get_host}}/redirect/{{x.key}}</a></h3>
+				</div>
+				<div class="col-sm-5 linkTo">
+					<h3><a href="{{ x.linkTo }}">{{ x.linkTo }}</a></h3>
+				</div>
+				<div class="col-md-2 dateCreated">
+					<h4>{{ x.dateCreated }}</h4>
+				</div>
+				<div class="col-md-1">
+					<h4>
+						<a class="btn edit" href="{% url 'edit_url' key=x.key %}">
+							<i class="fas fa-edit"></i>
+						</a>
+						<a class="btn delete" href="{% url 'del_url' key=x.key %}">
+							<i class="fas fa-minus"></i>
+						</a>
+					</h4>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

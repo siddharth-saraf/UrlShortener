@@ -1,0 +1,31 @@
+{% extends "urlShortener/base.html" %}
+
+{% block title %}
+	{% if request.path == '/accounts/edit' %}
+		Edit Account
+	{% else %}
+		Sign Up
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+	<div class="signupForm">
+		<h2 class="formTitle">
+			{% if request.path == '/accounts/edit' %}
+				Edit Account
+			{% else %}
+				Sign Up
+			{% endif %}			
+		</h2>
+		<form method="POST"> {% csrf_token %}
+			{{ form.as_p }}
+			<button type="submit" class="save btn btn-default">
+				{% if request.path == "/accounts/edit" %}
+					Save
+				{% else %}
+					Sign Up
+				{% endif %}
+			</button>
+		</form>
+	</div>
+{% endblock %}
