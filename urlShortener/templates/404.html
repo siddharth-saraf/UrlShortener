@@ -1,0 +1,12 @@
+{% extends 'urlShortener/base.html' %}
+
+{% block title %}
+	Page Not Found
+{% endblock %}
+
+{% block content %}
+	<div>
+		<h1>404 Page Not Found</h1>
+		<p>Oops, the page you requested was not found, you can go back to the home page <a class="link" href="{% url 'home' %}">here</a>.</p>
+	</div>
+{% endblock %}

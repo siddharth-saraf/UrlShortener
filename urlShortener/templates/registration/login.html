@@ -1,0 +1,16 @@
+{% extends 'urlShortener/base.html' %}
+
+{% block title %}
+	Login
+{% endblock %}
+
+{% block content %}
+	<div class="loginForm">
+		<h2 class="formTitle">Login</h2>
+		<form method="POST"> {% csrf_token %}
+			{{ form.as_p }}
+			<button type="submit" class="save btn btn-default">Login</button>
+		</form>
+		<a href="{% url 'password_reset' %}" class="forgotLink">Forgot Your Password?</a>
+	</div>
+{% endblock %}

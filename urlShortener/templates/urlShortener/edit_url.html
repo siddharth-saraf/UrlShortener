@@ -1,0 +1,23 @@
+{% extends 'urlShortener/base.html' %}
+
+{% block title %}
+	{% if request.path == '/new/' %}
+		New Url
+	{% else %}
+		Edit Url 
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+	<div class="editUrl">
+		{% if request.path == '/new/' %}
+			<h2 class="formTitle">New Url</h2>
+		{% else %}
+			<h2 class="formTitle">Edit Url</h2> 
+		{% endif %}
+		<form method="POST" class="url-form">{% csrf_token %}
+			{{ form.as_p }}
+			<button type="Submit" class="save btn btn-default">Save</button>
+		</form>
+	</div>
+{% endblock %}
