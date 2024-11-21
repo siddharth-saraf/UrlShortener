@@ -23,7 +23,7 @@
 		{% for x in urls %}
 			<div class="url listUrl row">
 				<div class="col-sm-4 linkFrom">
-					<h3><a href="{% url 'redirect' key=x.key %}">{{ request.get_host}}/redirect/{{x.key}}</a></h3>
+					<h3><a href="{% url 'redirect' key=x.key %}">{{ request.get_host}}/r/{{x.key}}</a></h3>
 				</div>
 				<div class="col-sm-5 linkTo">
 					<h3><a href="{{ x.linkTo }}">{{ x.linkTo }}</a></h3>
