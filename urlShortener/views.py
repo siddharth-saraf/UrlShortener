@@ -18,8 +18,11 @@ def url_list(request):
 		return render(request, 'urlShortener/url_list.html', {'urls':Url.objects.filter(owner=request.user).order_by('dateCreated')})
 
 def redirect(request, key):
-	url = get_object_or_404(Url, key=key)
-	return HttpResponseRedirect(url.linkTo)
+	try:
+		url = get_object_or_404(Url, key=key)
+		return HttpResponseRedirect(url.linkTo)
+	except:
+		return HttpResponseRedirect('/')
 
 def new_url(request):
 	if not request.user.is_authenticated:
