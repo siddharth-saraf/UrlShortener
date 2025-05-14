@@ -1,5 +1,4 @@
 urlShortener/__pycache__
-urlShortener/db.sqlite3
-myvenv
+db.sqlite3
 */__pycache__
 *.pyc
