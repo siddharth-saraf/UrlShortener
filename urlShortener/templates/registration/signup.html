@@ -1,31 +1,89 @@
-{% extends "urlShortener/base.html" %}
+{% extends 'urlShortener/base.html' %}
 
 {% block title %}
-	{% if request.path == '/accounts/edit' %}
-		Edit Account
-	{% else %}
-		Sign Up
-	{% endif %}
+    {% if request.path == '/accounts/edit' %}
+        Edit Account
+    {% else %}
+        Sign Up
+    {% endif %}
 {% endblock %}
 
 {% block content %}
-	<div class="signupForm">
-		<h2 class="formTitle">
-			{% if request.path == '/accounts/edit' %}
-				Edit Account
-			{% else %}
-				Sign Up
-			{% endif %}			
-		</h2>
-		<form method="POST"> {% csrf_token %}
-			{{ form.as_p }}
-			<button type="submit" class="save btn btn-default">
-				{% if request.path == "/accounts/edit" %}
-					Save
-				{% else %}
-					Sign Up
-				{% endif %}
-			</button>
-		</form>
-	</div>
+<div class="row justify-content-center py-5">
+    <div class="col-md-6 col-lg-5">
+        <div class="card border-0 shadow-lg rounded-4 p-4">
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <div class="bg-primary-subtle d-inline-block p-3 rounded-circle text-primary mb-3">
+                        <i class="fas fa-user-{% if request.path == '/accounts/edit' %}cog{% else %}plus{% endif %} fa-2x"></i>
+                    </div>
+                    <h2 class="fw-bold text-dark">
+                        {% if request.path == '/accounts/edit' %}
+                            Edit Account
+                        {% else %}
+                            Join Us
+                        {% endif %}
+                    </h2>
+                    <p class="text-muted">
+                        {% if request.path == '/accounts/edit' %}
+                            Update your profile information.
+                        {% else %}
+                            Start shortening your links today.
+                        {% endif %}
+                    </p>
+                </div>
+
+                <form method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="mb-3">
+                            <label for="{{ field.id_for_label }}" class="form-label fw-semibold small text-uppercase text-muted">{{ field.label }}</label>
+                            {% if field.name == 'password1' or field.name == 'password2' %}
+                                <input type="password" 
+                                       name="{{ field.name }}" 
+                                       id="{{ field.id_for_label }}" 
+                                       class="form-control {% if field.errors %}is-invalid{% endif %}"
+                                       required>
+                            {% else %}
+                                <input type="{{ field.field.widget.input_type }}" 
+                                       name="{{ field.name }}" 
+                                       id="{{ field.id_for_label }}" 
+                                       class="form-control {% if field.errors %}is-invalid{% endif %}"
+                                       {% if field.value %}value="{{ field.value }}"{% endif %}
+                                       {% if field.field.required %}required{% endif %}>
+                            {% endif %}
+                            
+                            {% if field.help_text %}
+                                <div class="form-text small opacity-75">{{ field.help_text }}</div>
+                            {% endif %}
+                            
+                            {% for error in field.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+
+                    <div class="d-grid mt-5">
+                        <button type="submit" class="btn btn-primary btn-lg shadow-sm py-3 fw-bold">
+                            {% if request.path == "/accounts/edit" %}
+                                Save Changes
+                            {% else %}
+                                Create Account
+                            {% endif %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            {% if request.path == "/accounts/edit" %}
+                <a href="{% url 'url_list' %}" class="text-muted text-decoration-none small">
+                    <i class="fas fa-arrow-left me-1"></i> Back to My Links
+                </a>
+            {% else %}
+                <p class="text-muted small">Already have an account? <a href="{% url 'login' %}" class="text-primary fw-bold text-decoration-none">Login</a></p>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock %}

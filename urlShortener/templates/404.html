@@ -1,12 +1,30 @@
 {% extends 'urlShortener/base.html' %}
 
 {% block title %}
-	Page Not Found
+    Page Not Found
 {% endblock %}
 
 {% block content %}
-	<div>
-		<h1>404 Page Not Found</h1>
-		<p>Oops, the page you requested was not found, you can go back to the home page <a class="link" href="{% url 'home' %}">here</a>.</p>
-	</div>
+<div class="row justify-content-center py-5">
+    <div class="col-md-6 text-center">
+        <div class="display-1 fw-bold text-primary mb-3">404</div>
+        <h1 class="fw-bold text-dark mb-4">
+            {% if message %}{{ message }}{% else %}Page Not Found{% endif %}
+        </h1>
+        <p class="lead text-muted mb-5">
+            {% if message %}
+                This shortened link is no longer available.
+            {% else %}
+                Oops! The link you're looking for might have been moved or deleted.
+            {% endif %}
+        </p>
+        <div class="p-5 bg-white shadow-sm rounded-4 mb-5 border-0">
+            <i class="fas fa-search fa-5x text-light mb-4"></i>
+            <p class="text-muted">Maybe try going back to the home page or checking your "My Links" dashboard?</p>
+        </div>
+        <a href="{% url 'home' %}" class="btn btn-primary btn-lg px-5 shadow-sm fw-bold">
+            <i class="fas fa-home me-2"></i> Go to Home
+        </a>
+    </div>
+</div>
 {% endblock %}

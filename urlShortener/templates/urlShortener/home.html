@@ -1,25 +1,122 @@
 {% extends 'urlShortener/base.html' %}
 
 {% block title %}
-	Home
+    Home
 {% endblock %}
 
 {% block content %}
-	<div class="home">
-		<h1 style="text-align: center">Welcome to the my URLShortener</h1>
-		<p>
-			Simplify Your URLs
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <!-- Hero Section -->
+        <div class="text-center py-5 mb-5">
+            <h1 class="display-4 fw-bold text-dark mb-3">Shorten Your Links, <span class="text-primary">Expand Your Reach</span></h1>
+            <p class="lead text-muted mb-4">
+                Transform long, cumbersome URLs into short, powerful links that are easy to share and track.
+            </p>
+            {% if not user.is_authenticated %}
+                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                    <a href="{% url 'signup' %}" class="btn btn-primary btn-lg px-5">Get Started for Free</a>
+                    <a href="{% url 'login' %}" class="btn btn-outline-secondary btn-lg px-5">Login</a>
+                </div>
+            {% else %}
+                <a href="{% url 'new_url' %}" class="btn btn-primary btn-lg px-5">Create New Link</a>
+            {% endif %}
+        </div>
 
-			Convert long web addresses into short, manageable links. Perfect for sharing on social media, emails, and more.
+        <!-- Features Section -->
+        <div class="row g-4 py-5 border-top">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-3">
+                    <div class="card-body">
+                        <div class="text-primary mb-3">
+                            <i class="fas fa-bolt fa-2x"></i>
+                        </div>
+                        <h3 class="h5 fw-bold">Fast & Reliable</h3>
+                        <p class="text-muted">Shorten your URLs in seconds with our optimized infrastructure designed for speed.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-3">
+                    <div class="card-body">
+                        <div class="text-primary mb-3">
+                            <i class="fas fa-shield-alt fa-2x"></i>
+                        </div>
+                        <h3 class="h5 fw-bold">Secure Links</h3>
+                        <p class="text-muted">Every link is processed through our security layers to ensure a safe redirection for your users.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-3">
+                    <div class="card-body">
+                        <div class="text-primary mb-3">
+                            <i class="fas fa-chart-line fa-2x"></i>
+                        </div>
+                        <h3 class="h5 fw-bold">Easy Management</h3>
+                        <p class="text-muted">Keep all your shortened URLs in one place. Edit or delete them whenever you need.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <!-- Use Cases Section -->
+        <div class="py-5">
+            <h2 class="text-center fw-bold mb-5">Perfect for Every Need</h2>
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <div class="pe-md-4">
+                        <div class="d-flex mb-4">
+                            <div class="flex-shrink-0">
+                                <span class="badge bg-primary-subtle text-primary rounded-circle p-3">
+                                    <i class="fab fa-instagram fa-lg"></i>
+                                </span>
+                            </div>
+                            <div class="ms-3">
+                                <h4 class="fw-bold">Social Media</h4>
+                                <p class="text-muted">Clean up your Instagram bio or Twitter posts with tidy links that don't eat up your character count.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-4">
+                            <div class="flex-shrink-0">
+                                <span class="badge bg-primary-subtle text-primary rounded-circle p-3">
+                                    <i class="fas fa-envelope fa-lg"></i>
+                                </span>
+                            </div>
+                            <div class="ms-3">
+                                <h4 class="fw-bold">Email Marketing</h4>
+                                <p class="text-muted">Improve click-through rates by using professional, short links in your newsletters and campaigns.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <span class="badge bg-primary-subtle text-primary rounded-circle p-3">
+                                    <i class="fas fa-print fa-lg"></i>
+                                </span>
+                            </div>
+                            <div class="ms-3">
+                                <h4 class="fw-bold">Print Media</h4>
+                                <p class="text-muted">Make it easy for people to type your URL from business cards, posters, or flyers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 text-center">
+                    <div class="p-5 bg-primary-subtle rounded-5">
+                        <i class="fas fa-link fa-10x text-primary opacity-25"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-			Fast and Easy: Shorten URLs in seconds.
-
-			Secure: Safe and reliable.
-
-			Get Started
-
-			Click Sign up on the top right, or login if you already have an accoutn
-		</p>
-	</div>
+        <!-- Call to Action -->
+        {% if not user.is_authenticated %}
+        <div class="bg-primary text-white rounded-4 p-5 text-center my-5 shadow">
+            <h2 class="fw-bold mb-3">Ready to start shortening?</h2>
+            <p class="lead mb-4">Join hundreds of users who trust UrlShortener for their link management.</p>
+            <a href="{% url 'signup' %}" class="btn btn-light btn-lg px-5 fw-bold">Sign Up Now</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

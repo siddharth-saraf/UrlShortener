@@ -4,7 +4,9 @@ from . import views
 urlpatterns = [
 	path('', views.home, name="home"),
 	path('myUrls/', views.url_list, name="url_list"),
-	path('r/<str:key>/', views.redirect, name="redirect"),
+	path('r/<str:key>/', views.redirect, name='redirect'),
+	path('qr/<str:key>/', views.qr_code, name='qr_code'),
+
 	path('new/', views.new_url, name='new_url'),
 	path('edit/<str:key>/', views.edit_url, name="edit_url"),
 	path('delete/<str:key>/', views.del_url, name="del_url"),
