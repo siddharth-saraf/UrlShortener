@@ -31,7 +31,7 @@
                     <a href="{% url 'signup' %}" class="topLink top">/Sign Up</a>
                     <a href="{% url 'login' %}" class="topLink top">Login</a>
                 </div>
-            {% elif request.build_absolute_uri == 'http://127.0.0.1:8000/myUrls/' %}
+            {% elif request.path == '/myUrls/' %}
                 <a href="{% url 'new_url' %}" class="topLeft top newUrl">
                     <span class="addUrl">Add Url</span>
                     <span class="glyphicon glyphicon-plus"></span>
