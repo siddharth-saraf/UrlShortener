@@ -58,35 +58,6 @@ In today's digital landscape, the clarity of a link can significantly impact use
    python manage.py runserver
    ```
 
-## Deployment with GitHub Actions
-
-This project is pre-configured for automated deployment to **PythonAnywhere**.
-
-### Prerequisites
-
-- A [PythonAnywhere](https://www.pythonanywhere.com/) account.
-- A GitHub repository for your project.
-
-### GitHub Secrets Setup
-
-Add the following secrets to your GitHub repository (Settings > Secrets and variables > Actions):
-
-| Secret Name | Description | Example |
-|-------------|-------------|---------|
-| `PA_HOST` | PythonAnywhere SSH Host | `ssh.pythonanywhere.com` |
-| `PA_USERNAME` | Your PythonAnywhere username | `myusername` |
-| `PA_SSH_KEY` | Your private SSH key (must match the public key in PA) | `-----BEGIN OPENSSH PRIVATE KEY-----...` |
-
-### Automated Deployment
-
-Every push to the `master` branch will automatically:
-1.  Check out your code.
-2.  Install dependencies.
-3.  Connect to PythonAnywhere via SSH.
-4.  Pull the latest changes.
-5.  Run migrations and collect static files.
-6.  Reload your web application.
-
 ## Built With
 
 - [Django 2.2+](https://www.djangoproject.com/)
