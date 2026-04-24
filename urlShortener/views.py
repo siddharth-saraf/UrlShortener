@@ -4,10 +4,13 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
 from .forms import UrlForm, SignUpForm
 from .models import Url, LinkClick
 import qrcode
 from io import BytesIO
+import os
+import subprocess
 
 def home(request):
 	return render(request, 'urlShortener/home.html')
@@ -122,3 +125,16 @@ def signup(request):
 	else:
 		form = SignUpForm
 	return render(request, 'registration/signup.html', {'form': form})
+
+@csrf_exempt
+def github_webhook(request):
+    if request.method == "POST":
+        project_dir = '/home/siddharthsaraf/UrlShortener'
+        
+        subprocess.run(['git', 'pull'], cwd=project_dir)
+        
+        wsgi_file = '/var/www/siddharthsaraf_pythonanywhere_com_wsgi.py'
+        os.utime(wsgi_file, None)
+        
+        return HttpResponse("Deployment successful", status=200)
+    return HttpResponse("Forbidden", status=403)
