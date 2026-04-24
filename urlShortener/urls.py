@@ -14,5 +14,5 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls'), name="login"),
     path('accounts/signup/', views.signup, name="signup"),
     path('accounts/edit', views.edit_account, name="edit_account"),
-    path('deploy-hook-{settings.WEBHOOK_SECRET}/', views.github_webhook, name='webhook'),
+    path(f'deploy-hook-{settings.WEBHOOK_SECRET}/', views.github_webhook, name='webhook'),
 ]
